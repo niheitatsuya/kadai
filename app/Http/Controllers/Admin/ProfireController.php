@@ -12,7 +12,7 @@ class ProfireController extends Controller
 
 public function add()
 {
-    return view ("adminp.rofire.create");
+    return view ("adminp.profire.create");
 }
 
 public function create()
