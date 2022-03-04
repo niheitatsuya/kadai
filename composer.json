@@ -12,7 +12,8 @@
         "fideloper/proxy": "^4.4",
         "laravel/framework": "^6.20.26",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "1.*"
+        "laravel/ui": "1.*",
+        "league/flysystem-aws-s3-v3": "1.0.29"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "3.4.2",
