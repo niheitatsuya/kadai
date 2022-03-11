@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\profile;
+use App\Profile;
 
 class ProfileController extends Controller
 {
@@ -16,20 +16,36 @@ public function add()
 
 public function create(Request $request)
 {
-    return redirect ("admin/profile/create");
+   $this->validate($request, Profile::$rules);
+    $profile = new Profile;
+    $form = $request->all();
+    unset($form['_token']);
     
-      $profile->fill($form);
+     $profile->fill($form);
       $profile->save();
-
+return redirect ("admin/profile/create");
 }
 
-public function edit()
+public function edit(Request $request)
+  {
+     
+      $profile = Profile::find($request->id);
+      if (empty($profile)) {
+        abort(404);    
+      }
+      return view('admin.profile.edit', ['profile_form' => $profile]);
+  }
+public function update(Request $request)
 {
-    return view ("admin.profile.create");
-}
+    $this->validate($request, Profile::$rules);
+      
+      $news = Profile::find($request->id);
+     
+      $profile_form = $request->all();
+      unset($profile_form['_token']);
 
-public function update()
-{
+      $news->fill($profile_form)->save();
+    
     return redirect ("admin/profile/create");
 }
 
